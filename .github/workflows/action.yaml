@@ -26,6 +26,7 @@ on:
         - name: Archieve artifact
           uses: actions/upload-artifact@v2
           with:
-            name: zipped-bundle-{{ github.sha }}
-            path: {{ github.sha }}.zip
+            name: zipped-bundle-${{ github.sha }}
+            path: ${{ github.sha }}.zip
+            
 
