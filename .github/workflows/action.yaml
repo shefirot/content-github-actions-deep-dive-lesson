@@ -24,12 +24,10 @@ jobs:
             zip -r ../${{ github.sha }}.zip .
       - name: Depuracion
         run: ls -lah .
-      - name: Depuracion
-        run: ls -lah fuction/
       - name: Archieve artifact
         uses: actions/upload-artifact@v2
         with:
           name: zipped-bundle-${{ github.sha }}
-          path: function/${{ github.sha }}.zip
+          path: ${{ github.sha }}.zip .
             
 
