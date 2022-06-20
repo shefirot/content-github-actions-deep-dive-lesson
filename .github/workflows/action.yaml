@@ -3,29 +3,29 @@ on:
   push:
     branches:
       - main
-  jobs:
-    construir:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Check out code
-          uses: actions/checkout@v2
-        - name: Set up Python
-          uses: actions/setup-python@v2
-          with:
-            python-version: 3.8
-        - name: Install libraries if need it
-          run: |
-              cd function
-              python -m pip install --upgrade pip
-              if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
-        - name: Create zip bundle
-          run: |
-              cd function
-              zip -r ../${{ github.sha }}..zip .
-        - name: Archieve artifact
-          uses: actions/upload-artifact@v2
-          with:
-            name: zipped-bundle-${{ github.sha }}
-            path: ${{ github.sha }}.zip
+jobs:
+  construir:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install libraries if need it
+        run: |
+            cd function
+            python -m pip install --upgrade pip
+            if [ -f requirements.txt ]; then pip install -r requirements.txt -t .; fi
+      - name: Create zip bundle
+        run: |
+            cd function
+            zip -r ../${{ github.sha }}..zip .
+      - name: Archieve artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: zipped-bundle-${{ github.sha }}
+          path: ${{ github.sha }}.zip
             
 
